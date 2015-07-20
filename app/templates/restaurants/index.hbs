@@ -1,1 +1,7 @@
-{{outlet}}
+<h1>Restaurants Index</h1>
+
+<ul>
+  {{#each model as |restaurant|}}
+    <li>{{restaurant.name}} {{restaurant.address}}</li>
+  {{/each}}
+</ul>
