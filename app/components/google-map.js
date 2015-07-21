@@ -10,6 +10,11 @@ export default Ember.Component.extend({
       mapTypeId: window.google.maps.MapTypeId.HYBRID
     };
     var map = new window.google.maps.Map(this.$('.map-canvas')[0], options);
+
+    this.get('restaurants').forEach(function(restaurant) {
+      console.log(restaurant.get('name'));
+    });
+
     new window.google.maps.Marker({
       position: centerLatLng,
       map: map,

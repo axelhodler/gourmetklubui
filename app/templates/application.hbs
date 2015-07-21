@@ -1,5 +1,12 @@
 <h2 id="title">Welcome to Ember.js</h2>
 <h2 id="title">My Map Component</h2>
-{{google-map latitude="48.775556" longitude="9.182778"}}
+{{google-map latitude="48.775556" longitude="9.182778" restaurants=model}}
 
+<h1>Restaurants Index</h1>
+
+<ul>
+  {{#each model as |restaurant|}}
+    <li>{{restaurant.name}} {{restaurant.address}}</li>
+  {{/each}}
+</ul>
 {{outlet}}
