@@ -8,7 +8,8 @@ export default Ember.Component.extend({
         this.get('latitude'),
         this.get('longitude')
       ),
-      zoom: 15
+      zoom: 13,
+      mapTypeId: window.google.maps.MapTypeId.HYBRID
     };
     new window.google.maps.Map(this.$('.map-canvas')[0], options);
   })
