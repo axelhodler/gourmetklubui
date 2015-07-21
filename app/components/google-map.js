@@ -11,14 +11,26 @@ export default Ember.Component.extend({
     };
     var map = new window.google.maps.Map(this.$('.map-canvas')[0], options);
 
+    var geocoder = new window.google.maps.Geocoder();
+
     this.get('restaurants').forEach(function(restaurant) {
-      console.log(restaurant.get('name'));
+      geocoder.geocode( { 'address': restaurant.get('address')}, function(results, status) {
+        if (status === window.google.maps.GeocoderStatus.OK) {
+          if (status !== window.google.maps.GeocoderStatus.ZERO_RESULTS) {
+            new window.google.maps.Marker({
+              position: results[0].geometry.location,
+              map: map,
+              title: restaurant.get('name')
+            });
+          } else {
+            console.log("No results found");
+          }
+        } else {
+          console.log("Geocode was not successful for the following reason: " + status);
+        }
+      });
     });
 
-    new window.google.maps.Marker({
-      position: centerLatLng,
-      map: map,
-      title: 'Hello World!'
-    });
+
   })
 });
